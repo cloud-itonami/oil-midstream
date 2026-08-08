@@ -23,11 +23,19 @@ src/oil_midstream/murakumo.cljc
 889c000 Merge pull request #1 from etzhayyim/rescue/murakumo-wip-20260718
 ```
 
-`src/` が無い場合は superproject 側で pin を進める（詳細は skill `west-pin-advance`）:
+（この写しは `889c000` 時点のもの。**`889c000` 以降ならどの commit でもよい** ——
+この文書自体が入った `cd89736` を含む。1 行目の `src/…` が出ることだけが条件。）
+
+`src/` が無い場合は superproject 側で pin を進める。**west.yml は生成物なので手で
+編集せず、サーバ側 single-entry commit を使う**（詳細は skill `west-pin-advance`）:
 
 ```bash
-nbb scripts/gen-west-manifest.cljs --entry oil-midstream
+nbb --classpath ".:scripts/nbb_compat" scripts/west-pin-put.cljs oil-midstream HEAD --dry-run
+nbb --classpath ".:scripts/nbb_compat" scripts/west-pin-put.cljs oil-midstream HEAD
+printf '%s\n' oil-midstream | xargs west update --fetch smart
 ```
+
+（`xargs` は必須。`printf … | west update` は**引数ゼロ = 全 4,100 project 更新**になる。）
 
 ---
 

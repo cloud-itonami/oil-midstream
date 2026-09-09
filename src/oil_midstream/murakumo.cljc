@@ -1,6 +1,6 @@
 (ns oil_midstream.murakumo
   "Pure cljc actor boundary generated from manifest migration scaffold."
-  (:require [kotoba.lang.text :as str]))
+  (:require [clojure.string :as str]))
 
 (def actor-did
   "did:web:oil-midstream.etzhayyim.com")

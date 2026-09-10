@@ -20,7 +20,7 @@ superproject の成熟度 loop（skill `itonami-maturity-improve`）が、この
 |---|---|---|
 | `15439a3` | 2026-06-24 | snapshot（manifest / did.json / NOTICE / test.ts） |
 | `ca8d5fd` | 2026-07-02 | did:web を `etzhayyim.com` scheme へ移行 |
-| `6921bbc` | 2026-07-18 | murakumo WIP の rescue（`src/oil_midstream/murakumo.cljc`） |
+| `6921bbc` | 2026-07-18 | murakumo WIP の rescue（`src/oil_midstream/murakumo.kotoba`） |
 | `889c000` | 2026-07-27 | 上の rescue branch を main へ merge |
 
 ## 問題
@@ -171,7 +171,7 @@ collection 化、他 actor の collection の自名前空間への付け替え�
 
 - `README.md` / `docs/operator-quickstart.md` / この ADR を追加した。
 - superproject の west pin を `ca8d5fd`（2026-07-02）→ `889c000` に進めた。旧 pin は
-  2026-07-18 の rescue より前を指しており、**`src/oil_midstream/murakumo.cljc`
+  2026-07-18 の rescue より前を指しており、**`src/oil_midstream/murakumo.kotoba`
   （226 行の gate）が checkout に現れていなかった**。成熟度 scan は pin ではなく
   checkout を読むので、この repo の substrate は 0 と測られていた —— pin を正した
   副産物として、その過小評価も解消される（`axis-substrate` は loop の目標軸ではない）。

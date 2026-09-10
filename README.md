@@ -13,7 +13,7 @@ deny-by-default gate。パイプラインの実データも、それを読むグ
 | | ここにあるか |
 |---|---|
 | actor が**何を名乗り、何を要求し、どの pipeline を持つと宣言しているか** | **ある**（`actor-manifest.jsonld` 8,653 B / `.well-known/did.json` 736 B） |
-| **gate**（attestation が 7 つ揃わなければ effect を 1 つも出さない判断） | **ある**（`src/oil_midstream/murakumo.cljc`、226 行） |
+| **gate**（attestation が 7 つ揃わなければ effect を 1 つも出さない判断） | **ある**（`src/oil_midstream/murakumo.kotoba`、226 行） |
 | パイプラインを数えるグラフ、cron を撃つ scheduler、XRPC を受ける server | **無い** |
 | 幹線パイプライン・ターミナルの実データ | **無い** |
 
@@ -31,7 +31,7 @@ deny-by-default gate。パイプラインの実データも、それを読むグ
 
 | 出所 | 名乗り | 2026-08-09 実測 |
 |---|---|---|
-| `actor-manifest.jsonld` の `@id`<br>`src/oil_midstream/murakumo.cljc` の `actor-did` | `did:web:oil-midstream.etzhayyim.com` | **解決しない**。`oil-midstream.etzhayyim.com` に A/AAAA レコードが無く、`curl` は `000`（接続前に失敗） |
+| `actor-manifest.jsonld` の `@id`<br>`src/oil_midstream/murakumo.kotoba` の `actor-did` | `did:web:oil-midstream.etzhayyim.com` | **解決しない**。`oil-midstream.etzhayyim.com` に A/AAAA レコードが無く、`curl` は `000`（接続前に失敗） |
 | `.well-known/did.json` の `id` | `did:web:etzhayyim.com:actor:oil-midstream` | **解決する**。`https://etzhayyim.com/actor/oil-midstream/did.json` が `200` |
 
 **gate が名乗るのは解決しない方**である（`murakumo.cljc:6`）。effect の
@@ -176,7 +176,7 @@ oil-distribution は 15）。
 
 ## gate は何を止めるか
 
-`src/oil_midstream/murakumo.cljc` は **16 cell × 7 gate** の deny-by-default。
+`src/oil_midstream/murakumo.kotoba` は **16 cell × 7 gate** の deny-by-default。
 7 つの attestation が 1 つでも欠けると `:status :blocked` で `:effects` は空になる
 （実測: 6/7 揃えても `:blocked`、`all-cell-plans` は 16 cell 全部 blocked で総 effect 数 0。
 7/7 揃えると 16 cell すべて `:ready` で effect 16）。
@@ -254,7 +254,7 @@ commit は 4 本だけ:
 |---|---|---|
 | `15439a3` | 2026-06-24 | snapshot（manifest / did.json / NOTICE / test.ts） |
 | `ca8d5fd` | 2026-07-02 | did:web を `etzhayyim.com` scheme へ移行 |
-| `6921bbc` | 2026-07-18 | murakumo WIP の rescue（`src/oil_midstream/murakumo.cljc`） |
+| `6921bbc` | 2026-07-18 | murakumo WIP の rescue（`src/oil_midstream/murakumo.kotoba`） |
 | `889c000` | 2026-07-27 | 上の rescue branch を main へ merge |
 
 ## 既知のギャップ（この反復で埋めていないもの）
@@ -264,7 +264,7 @@ commit は 4 本だけ:
   だけ**で、実体が変わっても赤くならない。`marine-insurance` は
   `test/…/docs_test.cljs` でこれを固定している —— 同じものがここにも要る。
 - **west pin が遅れていた。** superproject の pin は `ca8d5fd`（2026-07-02）で、
-  `src/oil_midstream/murakumo.cljc` を含む `889c000` を指していなかった。この
+  `src/oil_midstream/murakumo.kotoba` を含む `889c000` を指していなかった。この
   README を書く時点で main に合わせている。
 - **identity の不整合を直していない**（2 名の DID、live との 5 か所差分、
   live の `primaryLexicon` と manifest の食い違い）。

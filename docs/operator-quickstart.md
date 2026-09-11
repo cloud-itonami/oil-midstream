@@ -30,8 +30,8 @@ src/oil_midstream/murakumo.kotoba
 編集せず、サーバ側 single-entry commit を使う**（詳細は skill `west-pin-advance`）:
 
 ```bash
-nbb --classpath ".:scripts/nbb_compat" scripts/west-pin-put.cljs oil-midstream HEAD --dry-run
-nbb --classpath ".:scripts/nbb_compat" scripts/west-pin-put.cljs oil-midstream HEAD
+kbb --backend sci --classpath ".:scripts/nbb_compat" scripts/west-pin-put.cljs oil-midstream HEAD --dry-run
+kbb --backend sci --classpath ".:scripts/nbb_compat" scripts/west-pin-put.cljs oil-midstream HEAD
 printf '%s\n' oil-midstream | xargs west update --fetch smart
 ```
 
@@ -332,7 +332,7 @@ done
 ```
 
 ```bash
-nbb --classpath "src:/tmp" /tmp/probe-midstream.cljs
+kbb --backend sci --classpath "src:/tmp" /tmp/probe-midstream.cljs
 ```
 
 ```
@@ -372,7 +372,7 @@ cat > /tmp/probe-cols.cljs <<'EOF'
 (doseq [[k v] (sort-by key m/cell-specs)]
   (println (str (name k) "\t" (first (:collections v)))))
 EOF
-nbb --classpath "src:/tmp" /tmp/probe-cols.cljs
+kbb --backend sci --classpath "src:/tmp" /tmp/probe-cols.cljs
 ```
 
 ```
